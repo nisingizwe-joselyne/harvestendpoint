@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="icon" type="icon/jpg"  href="{% static 'image/rice.jpg' %}" >
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
+
+<!-- UIkit JS -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body style="background-image:radial-gradient(circle, rgb(116, 181, 224), rgb(121, 252, 160), rgb(237, 126, 252));">
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'work' %}">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">partners</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'cooperative' %}" tabindex="-1" aria-disabled="true">Register</a>
+        </li>
+      </ul>
+      
+      <!-- end of navbar -->
+
+
+      <!-- form --><div class="container my-5 py-5 z-depth-1">
+
+  <!--Section: Content-->
+  <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+
+
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center">
+
+      <!--Grid column-->
+      <div class="col-md-6">
+
+        <!-- Default form contact -->
+        <form class="text-center" action="#!">
+
+         <h3 class="font-weight-bold mb-4">Registration</h3>
+
+          <!-- Name -->
+          <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Cooperative Name">
+
+          <!-- Email -->
+          <input type="text" id="defaultContactFormLocation" class="form-control mb-4" placeholder="district">
+          <input type="text" id="defaultContactForm" class="form-control mb-4" placeholder="phone">
+
+
+          <!-- Subject -->
+          <label>harvesing type:</label>
+          <select class="browser-default custom-select mb-4">
+            <option value="" disabled>Choose option</option>
+            <option value="1" selected>maize</option>
+            <option value="2">milk</option>
+            <option value="3">wheat</option>
+            <option value="1" >Rice</option>
+            <option value="2">Potatoes</option>
+            <option value="3">coffee</option>
+            
+          </select>
+
+          <!-- Message -->
+          <div class="form-group">
+
+          <!-- Copy -->
+
+          <!-- Send button -->
+          <button class="btn btn-info btn-block" type="submit">Register</button>
+
+        </form>
+    </div>
+</div>
+  
+   
+  <!-- Footer -->
+  <!-- boostrap js -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <!-- uikit js -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit-icons.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.6/dist/js/uikit.min.js"></script>
+  <!-- aos js -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script>
+          AOS.init();
+      </script>
+
+</body>
+</html>
