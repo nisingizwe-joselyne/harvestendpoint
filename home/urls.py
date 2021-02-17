@@ -17,9 +17,9 @@ urlpatterns=[
     path('insurance/endpoints/',views.InsuranceRequest, name='insurancendpoints'),
     path('payharvest/endpoints/',views.Harvestpay, name='payharvestpoints'),
     path('registration', views.registration, name='registration'),
-    path('digitalapp',views.digitalapp, name='digital'),
+    path('digitalapp/',views.digitalapp, name='digital'),
     # path('<int:id>deleteInfos', views.delreg, name='deleteInfos'),
-    # path('<int:id>updateInfos', views.updatereg, name='updateInfos'),
+    # path('<int:id>updateInfos',views.updatereg, name='updateInfos'),
     path('reg/endpoint', views.registerEndpoint, name='endpoint'),
     # path('deleteEndpoints/<int:id>', views.deleteEndpoint, name='deleteEndpoints'),
     # path('user-creation/', CustomAuthToken.as_view())
