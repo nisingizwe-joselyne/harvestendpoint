@@ -202,9 +202,22 @@ class LoanSerializer(serializers.ModelSerializer):
         model=Loan  
         # depth=1
         fields=('__all__')           
+class InsuranceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Insurance  
+        # depth=1
+        fields=('__all__')           
 
 class PayharvestSerializer(serializers.ModelSerializer):
     class Meta:
         model=Payharvest  
         # depth=1
         fields=('__all__')                   
+
+
+        
+class RegisterSerializer(serializers.ModelSerializer):
+   class Meta:
+       model = Cooperativesreg
+       depth = 1 
+       fields = ('__all__')

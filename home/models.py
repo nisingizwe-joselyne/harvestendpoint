@@ -33,7 +33,11 @@ class Regfarmer(models.Model):
     farmercode=models.CharField(max_length=255)
     def __str__(self):
         return self.firstname
-
+class Insurance(models.Model):
+    farmercode=models.ForeignKey(Regfarmer, on_delete=models.CASCADE)
+    insurancetype = models.CharField(max_length=255,choices=(('imyaka15','imyaka15'),('imyaka10','imyaka10'),('imyaka itanu','imyaka itanu'),('umwaka umwe','umwaka umwe'),))
+    def __str__(self):
+        return self.farmercode  
 class Harvestrecord(models.Model):
     usered=models.ForeignKey(Regfarmer, on_delete=models.CASCADE)
     Quantity=models.CharField(max_length=255)

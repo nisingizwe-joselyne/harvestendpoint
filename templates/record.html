@@ -40,8 +40,7 @@
       <!-- end of navbar -->
 
 
-      <!-- form -->
-      <div class="container my-5 py-5 z-depth-1">
+      <!-- form --><div class="container my-5 py-5 z-depth-1">
 
   <!--Section: Content-->
   <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
@@ -55,31 +54,24 @@
 
         <!-- Default form contact -->
         <p class="alert alert-warning">{{message}}</p>
-        <form action="{% url 'cooperative' %}" method="POST">
-         <h3 class="font-weight-bold mb-4">Registration</h3>
+        <form action="{% url 'record' %}" method="POST">
+         <h3 class="font-weight-bold mb-4">Record</h3>
 
           <!-- Name -->
           <label for="name">Name</label>
-          <input type="text" name="name" id="defaultContactFormName" class="form-control mb-4" placeholder="cooperative Name">
-          <label for="district">District</label>
+          <input type="text" name="usered" id="defaultContactFormName" class="form-control mb-4" placeholder="cooperative Name">
+          <label for="district">quantity</label>
           <!-- Email -->
-          <input type="text" id="defaultContactFormLocation" class="form-control mb-4" name="Cooperativedistrict" placeholder="district">
-          <label for="phone">Leader phone</label>
-          <input type="text" id="defaultContactForm" name=" leaderphone" class="form-control mb-4" placeholder="phone">
+          <input type="text" id="defaultContactFormLocation" class="form-control mb-4" name="quantity" placeholder="quantity">
+          <label for="phone">farmercode</label>
+          <input type="text" id="defaultContactForm" name=" farmercode" class="form-control mb-4" placeholder="farmercode">
 
 
           <!-- Subject -->
-          <label>harvesing type:</label>
-          <select name="harvesttype" class="browser-default custom-select mb-4">
-            <option value="" disabled>Choose option</option>
-            <option value="1" selected>maize</option>
-            <option value="2">milk</option>
-            <option value="3">wheat</option>
-            <option value="1" >Rice</option>
-            <option value="2">Potatoes</option>
-            <option value="3">coffee</option>
-            
-          </select>
+          <label for="phone">donedate</label>
+          <input type="text" id="defaultContactForm" name=" donedate" class="form-control mb-4" placeholder="donedate">
+          <label for="phone">donetime</label>
+          <input type="text" id="defaultContactForm" name=" donetime" class="form-control mb-4" placeholder="donetime">
 
           <!-- Message -->
           <div class="form-group">
@@ -87,7 +79,7 @@
           <!-- Copy -->
 
           <!-- Send button -->
-          <button class="btn btn-info btn-block" type="submit">Register</button>
+          <button class="btn btn-info btn-block" type="submit">Record</button>
 
         </form>
     </div>
