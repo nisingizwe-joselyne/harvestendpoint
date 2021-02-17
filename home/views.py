@@ -124,6 +124,13 @@ def digitalapp (request):
 
         elif text == '3*2' and int(len(level))==4 and str(level[5]) in str(level):  
             response = 'CON  ubusabe bwawe bwo kwiyandikisha mukigega bwakiriwe urahabwa igisubizo mu gihe gito' +str(len(level))+ '\n'
+
+        else:
+            response = 'END Invalid Choice'
+        
+        return HttpResponse(response)
+
+    return HttpResponse('harvest')    
         # return JsonResponse(serializer.errors,status=400)
         #    '
         #     response = 'CON murakaza neza muhinzi wumuceri hitamo ibijyanye na '+str(len(level))+'\n'
