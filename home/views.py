@@ -47,7 +47,7 @@ def digitalapp (request):
             response += '3.kwiyandikisha mukigega'
             #  harvesting session
         elif text == '1':
-            response = 'CON shyiramo code yumuhinzi ugiye kwishyura'+str(len(level))+ '\n'
+            response = 'CON shyiramo code yumuhinzi ugiye kwishyura :\n'
             # insert=Harvestrecord(farmercode=str(level[1]))
             # insert.save()
         elif numb == '1' and int(len(level))==2 and str(level[1]) in str(level):
