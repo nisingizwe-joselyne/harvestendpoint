@@ -51,7 +51,7 @@ def digitalapp (request):
             # insert=Harvestrecord(farmercode=str(level[1]))
             # insert.save()
         elif numb == '1' and int(len(level))==2 and str(level[1]) in str(level):
-            response = 'CON  shyiramo ingano yumusaruro mu biro cg litiro' +str(len(level))+ '\n'
+            response = 'CON shyiramo ingano yumusaruro mu biro cg litiro' +str(len(level))+ '\n'
             # insert=Harvestrecord(Quantity=str(level[2]))
             # insert.save()
         elif numb == '1' and int(len(level))==3 and str(level[2]) in str(level):
