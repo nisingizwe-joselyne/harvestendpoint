@@ -54,24 +54,25 @@
 
         <!-- Default form contact -->
         <p class="alert alert-warning">{{message}}</p>
-        <form action="{% url 'record' %}" method="POST">
+        <form action="{% url 'recording' %}" method="POST">
          <h3 class="font-weight-bold mb-4">Record</h3>
 
           <!-- Name -->
-          <label for="name">Name</label>
-          <input type="text" name="usered" id="defaultContactFormName" class="form-control mb-4" placeholder="cooperative Name">
-          <label for="district">quantity</label>
+          {%csrf_token %}
+          <!-- <label for="cooperativename">Cooperative Name</label>
+          <input type="text" name="cooperativename" id="defaultContactFormName" class="form-control mb-4" placeholder="cooperativename"> -->
+          <label for="quantity">quantity</label>
           <!-- Email -->
-          <input type="text" id="defaultContactFormLocation" class="form-control mb-4" name="quantity" placeholder="quantity">
-          <label for="phone">farmercode</label>
-          <input type="text" id="defaultContactForm" name=" farmercode" class="form-control mb-4" placeholder="farmercode">
+          <input type="text" id="defaultContactFormLocation" class="form-control mb-4" name="Quantity" placeholder="quantity">
+          <label for="code">farmercode</label>
+          <input type="text" id="defaultContactForm" name="farmercode" class="form-control mb-4" placeholder="farmercode">
 
 
           <!-- Subject -->
-          <label for="phone">donedate</label>
-          <input type="text" id="defaultContactForm" name=" donedate" class="form-control mb-4" placeholder="donedate">
-          <label for="phone">donetime</label>
-          <input type="text" id="defaultContactForm" name=" donetime" class="form-control mb-4" placeholder="donetime">
+          <label for="date">donedate</label>
+          <input type="date" id="defaultContactForm" name="donedate" class="form-control mb-4" placeholder="donedate">
+          <label for="datetime">donetime</label>
+          <input type="text" id="defaultContactForm" name="donetime" class="form-control mb-4" placeholder="donetime">
 
           <!-- Message -->
           <div class="form-group">
@@ -79,7 +80,7 @@
           <!-- Copy -->
 
           <!-- Send button -->
-          <button class="btn btn-info btn-block" type="submit">Record</button>
+          <button class="btn btn-info btn-block" name="submit" type="submit">Record</button>
 
         </form>
     </div>

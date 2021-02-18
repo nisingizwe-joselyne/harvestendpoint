@@ -13,7 +13,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
-from django.views.decorators.csrf import requires_csrf_token
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 def welcome(request):
@@ -57,7 +57,7 @@ def digitalapp (request):
         elif numb == '1' and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON  shyiramo amafaranga ugiye kwishyura :\n'
         elif numb == '1' and int(len(level))==4 and str(level[3]) in str(level):
-            response = 'CON  wahisemo kwishyura'+ str(level[3]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura : \n'
+            response = 'CON  wahisemo kwishyura'+ str(level[4]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura : \n'
         elif text == '2':
             response = 'CON  hitamo'+str(len(level))+'\n'
             response += '1.kureba umusaruro mbumbe \n'
@@ -338,7 +338,7 @@ class CustomAuthToken(ObtainAuthToken):
             'first_name':user.first_name
 
         })       
-@requires_csrf_token
+
 def registration(request):
     select = Cooperativesreg.objects.all()
     if request.method == 'POST':
@@ -346,29 +346,45 @@ def registration(request):
         Cooperativedistrict = request.POST['Cooperativedistrict']
         leaderphone = request.POST['leaderphone']
         harvesttype = request.POST['harvesttype']
-        insert = Cooperativesreg(name=name,Cooperativedistrict=Cooperativedistrict,leaderphone=leaderphone, harvesttype= harvesttype)
+        leadername = request.POST['leadername']
+        Cooperativesector = request.POST['Cooperativesector']
+        insert = Cooperativesreg(name=name,Cooperativedistrict=Cooperativedistrict,leaderphone=leaderphone, harvesttype= harvesttype,leadername=leadername,Cooperativesector=Cooperativesector)
         try:
             insert.save()
-            return render(request,'cooperative.html',{'message':'data has been inserted succesful','data':select})
+            return render(request,'cooperative.html',{'message':'your request has been succeeful submitted we will  get in touch with u soon','data':select})
         except :
             return render(request,'cooperative.html',{'message':'failed to insert','data':select})
     return render(request,'cooperative.html',{'data':select})
 
+def Harvestrecording(request):
+    select = Harvestrecord.objects.all()
+    if request.method == 'POST':
+        Quantity = request.POST['Quantity']
+        farmercode = request.POST['farmercode']
+        donetime = request.POST['donetime']
+        donedate = request.POST['donedate']
+        insert = Harvestrecord(Quantity=Quantity,farmercode=farmercode, donetime=donetime,donedate=donedate)
+        try:
+            insert.save()
+            return render(request,'record.html',{'message':'data submitted successful','data':select})
+        except :
+            return render(request,'record.html',{'message':'failed to insert','data':select})
+    return render(request,'record.html',{'data':select})
 
-@requires_csrf_token
-def registerEndpoint(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        reg = Cooperativesreg.objects.all()
-        serializer = RegisterSerializer(reg, many=True)
-        return JsonResponse(serializer.data, safe=False)
-    elif request.method == 'POST':
-        data = JSONParser().parse(request) #request data
-        serializer = RegisterSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse({'message':'sucecesful registred', 'data':serializer.data}, status=201)
-        return JsonResponse(serializer.errors, status=400)
+# @requires_csrf_token
+# def registerEndpoint(request):
+#     """
+#     List all code snippets, or create a new snippet.
+#     """
+#     if request.method == 'GET':
+#         reg = Cooperativesreg.objects.all()
+#         serializer = RegisterSerializer(reg, many=True)
+#         return JsonResponse(serializer.data, safe=False)
+#     elif request.method == 'POST':
+#         data = JSONParser().parse(request) #request data
+#         serializer = RegisterSerializer(data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse({'message':'sucecesful registred', 'data':serializer.data}, status=201)
+#         return JsonResponse(serializer.errors, status=400)
 

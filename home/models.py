@@ -39,9 +39,8 @@ class Insurance(models.Model):
     def __str__(self):
         return self.farmercode  
 class Harvestrecord(models.Model):
-    usered=models.ForeignKey(Regfarmer, on_delete=models.CASCADE)
     Quantity=models.CharField(max_length=255)
-    farmercode=models.CharField(max_length=255)
+    farmercode=models.ForeignKey(Regfarmer, on_delete=models.CASCADE)
     donedate=models.DateField(auto_now=True)
     donetime=models.TimeField(auto_now=True)
 

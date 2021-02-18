@@ -40,10 +40,9 @@ INSTALLED_APPS = [
     'home',
     'rest_framework',
     'corsheaders',
-    'rest_framework.authtoken',
+    'rest_framework.authtoken'
     
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,6 +53,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = (
+#        'localhost:3000',
+# )
 ROOT_URLCONF = 'endpoint.urls'
 
 TEMPLATES = [
