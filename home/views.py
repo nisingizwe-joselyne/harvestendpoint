@@ -47,19 +47,19 @@ def digitalapp (request):
             response += '3.kwiyandikisha mukigega'
             #  harvesting session
         elif text == '1':
-            response = 'CON shyiramo code yumuhinzi ugiye kwishyura' +str(len(level))+ '\n'
+            response = 'CON shyiramo code yumuhinzi ugiye kwishyura'+str(len(level))+ '\n'
             # insert=Harvestrecord(farmercode=str(level[1]))
             # insert.save()
         elif numb == '1' and int(len(level))==2 and str(level[1]) in str(level):
-            response = 'CON shyiramo ingano yumusaruro mu biro cg litiro' +str(len(level))+ '\n'
+            response = 'CON shyiramo ingano yumusaruro mu biro cg litiro :\n'
             # insert=Harvestrecord(Quantity=str(level[2]))
             # insert.save()
         elif numb == '1' and int(len(level))==3 and str(level[2]) in str(level):
-            response = 'CON  shyiramo amafaranga ugiye kwishyura' +str(len(level))+ '\n'
+            response = 'CON  shyiramo amafaranga ugiye kwishyura :\n'
         elif numb == '1' and int(len(level))==4 and str(level[3]) in str(level):
-            response = 'CON  wahisemo kwishyura'+ str(level[3]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura \n'
+            response = 'CON  wahisemo kwishyura'+ str(level[3]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura : \n'
         elif text == '2':
-            response = 'CON  hitamo '+str(len(level))+'\n'
+            response = 'CON  hitamo'+str(len(level))+'\n'
             response += '1.kureba umusaruro mbumbe \n'
             response += '2.ubwishingizi bwumusaruro \n'
             response += '3.ikigega Loan'
