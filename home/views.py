@@ -51,9 +51,7 @@ def digitalapp (request):
             response = 'CON shyiramo code yumuhinzi ugiye kwishyura :' +str(len(level))+'\n'
             insert=Harvestrecord(farmercode=str(level[1]))
             insert.save()
-            
         elif numb == '1' and int(len(level))==2 and str(level[1]) in str(level):
-            response[:2]
             response = 'CON shyiramo ingano yumusaruro mu biro cg litiro \n'
             insert=Harvestrecord(Quantity=str(level[2]))
             insert.save()
@@ -69,7 +67,6 @@ def digitalapp (request):
         elif text == '2*1':
             response = 'CON  shyiramo code yawe ubashe kureba umusaruro :' +str(len(level))+ '\n'
         elif numb == '2*1'and int(len(level))==3 and str(level[2]) in str(level):
-            response[:3]
             insert=Harvestrecord(Quantity=str(level[3]))
             if insert.is_valid():
              response = 'CON hitamo kureba'+str(len(level))+'\n'
@@ -111,7 +108,6 @@ def digitalapp (request):
             insert= Cooperativesreg(name=str(level[2]))
             insert.save 
         elif numb == '3*1'and int(len(level))==3 and str(level[2]) in str(level):
-            response[:3]
             response = 'CON  shyiramo izina ryumuyobozi wa cooperative' +str(len(level))+ '\n'
             insert= Cooperativesreg(leadername=str(level[3]))
             insert.save   
@@ -127,7 +123,6 @@ def digitalapp (request):
             insert= Regfarmer(firstname=str(level[2]))
             insert.save
         elif numb == '3*2'and int(len(level))==3 and str(level[2]) in str(level):
-            response[:3]
             response = 'CON  shyiramo izina rya kabiri :' +str(len(level))+ '\n'
             insert= Regfarmer(lastname=str(level[3]))
             insert.save
