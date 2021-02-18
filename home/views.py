@@ -47,13 +47,13 @@ def digitalapp (request):
             response += '3.kwiyandikisha mukigega'
             #  harvesting session
         elif text == '1':
-            response = 'CON  shyiramo code yumuhinzi ugiye kwishyura' +str(len(level))+ '\n'
-            insert=Harvestrecord(farmercode=str(level[1]))
-            insert.save()
+            response = 'CON shyiramo code yumuhinzi ugiye kwishyura' +str(len(level))+ '\n'
+            # insert=Harvestrecord(farmercode=str(level[1]))
+            # insert.save()
         elif numb == '1' and int(len(level))==2 and str(level[1]) in str(level):
             response = 'CON  shyiramo ingano yumusaruro mu biro cg litiro' +str(len(level))+ '\n'
-            insert=Harvestrecord(Quantity=str(level[2]))
-            insert.save()
+            # insert=Harvestrecord(Quantity=str(level[2]))
+            # insert.save()
         elif numb == '1' and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON  shyiramo amafaranga ugiye kwishyura' +str(len(level))+ '\n'
         elif numb == '1' and int(len(level))==4 and str(level[3]) in str(level):
@@ -66,12 +66,12 @@ def digitalapp (request):
         elif text == '2*1':
             response = 'CON  shyiramo code yawe ubashe kureba umusaruro' +str(len(level))+ '\n'
         elif text == '2*1' and int(len(level))==2 and str(level[1]) in str(level):
-            insert=Harvestrecord(farmercode=str(level[2]))
-            if insert.is_valid():
-                  response = 'CON hitamo kureba'+str(len(level))+'\n'
-                  response += '1.umusaruro wukukwezi\n'
-                  response += '2.umusaruro mbumbe wose'
-            response = 'CON code mwashyizemo ntibaho : \n'
+            # insert=Harvestrecord(farmercode=str(level[2]))
+            # if insert.is_valid():
+             response = 'CON hitamo kureba'+str(len(level))+'\n'
+             response += '1.umusaruro wukukwezi\n'
+             response += '2.umusaruro mbumbe wose'
+            # response = 'CON code mwashyizemo ntibaho : \n'
                   
         elif text =='2*1*1':
             response = 'CON umusaruro wawe wukukwezi ni 360kg'+str(len(level))+'\n'
@@ -82,45 +82,45 @@ def digitalapp (request):
             response += '1.umwaka umwe \n'
             response += '2.imyaka itanu  \n'
             response += '3.imyaka icumi '   
-        elif text == '2*2*2':
+        elif text == '2*2*1':
             response = 'CON  shyiramo code yawe ubashe kwinjira mubwishingizi bwumwaka umwe' +str(len(level))+ '\n'
-        elif text == '2*2*2' and int(len(level))==3 and str(level[4]) in str(level):   
-            insert=Insurance(farmercode=str(level[2])) 
-            if insert.is_valid():
-                  response = 'CON kwiyandikisha gusaba ubwishingizi bwumwaka byagenze neza murahabwa igisubizo mu masaha macye'+str(len(level))+'\n'
-                  insert.save()          
-            response = 'CON code mwashyizemo ntibaho : \n'
+        elif text == '2*2*1' and int(len(level))==3 and str(level[4]) in str(level):   
+            # insert=Insurance(farmercode=str(level[2])) 
+            # if insert.is_valid():
+            response = 'CON kwiyandikisha gusaba ubwishingizi bwumwaka byagenze neza murahabwa igisubizo mu masaha macye'+str(len(level))+'\n'
+                #   insert.save()          
+            # response = 'CON code mwashyizemo ntibaho : \n'
         elif text == '3':
             response = 'CON  hitamo kwiyandikisha  nka '+str(len(level))+'\n'
             response += '1. itsinda(cooparative)\n'
             response += '2.umuhinzi ku giti cye '
         elif text == '3*1':
             response = 'CON  shyiramo izina rya cooperative' +str(len(level))+ '\n'
-            insert= Cooperativesreg(name=str(level[2]))
-            insert.save 
+            # insert= Cooperativesreg(name=str(level[2]))
+            # insert.save 
         elif text == '3*1' and int(len(level))==2 and str(level[3]) in str(level):
             response = 'CON  shyiramo izina ryumuyobozi wa cooperative' +str(len(level))+ '\n'
-            insert= Cooperativesreg(leadername=str(level[3]))
-            insert.save   
+            # insert= Cooperativesreg(leadername=str(level[3]))
+            # insert.save   
 
         elif text == '3*1' and int(len(level))==4 and str(level[5]) in str(level):
             response = 'CON  shyiramo numero zumuyobozi wa cooperative' +str(len(level))+ '\n'
-            insert= Cooperativesreg(leaderphone=str(level[4]))
-            insert.save   
+            # insert= Cooperativesreg(leaderphone=str(level[4]))
+            # insert.save   
         elif text == '3*1' and int(len(level))==5 and str(level[6]) in str(level):  
             response = 'CON  ubusabe bwawe bwo kwiyandikisha mukigega nkitsinda bwakiriwe urahabwa igisubizo mu gihe gito' +str(len(level))+ '\n'  
         elif text == '3*2':
             response = 'CON  shyiramo izina rya mbere' +str(len(level))+ '\n'
-            insert= Regfarmer(firstname=str(level[2]))
-            insert.save
+            # insert= Regfarmer(firstname=str(level[2]))
+            # insert.save
         elif text == '3*2' and int(len(level))==2 and str(level[3]) in str(level):
             response = 'CON  shyiramo izina rya kabiri' +str(len(level))+ '\n'
-            insert= Regfarmer(lastname=str(level[3]))
-            insert.save
+            # insert= Regfarmer(lastname=str(level[3]))
+            # insert.save
         elif text == '3*2' and int(len(level))==3 and str(level[4]) in str(level):
             response = 'CON  shyiramo numero yawe ya telephone' +str(len(level))+ '\n'
-            insert= Regfarmer(telephone=str(level[4]))    
-            insert.save
+            # insert= Regfarmer(telephone=str(level[4]))    
+            # insert.save
 
         elif text == '3*2' and int(len(level))==4 and str(level[5]) in str(level):  
             response = 'CON  ubusabe bwawe bwo kwiyandikisha mukigega bwakiriwe urahabwa igisubizo mu gihe gito' +str(len(level))+ '\n'
