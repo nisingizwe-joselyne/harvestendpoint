@@ -50,13 +50,13 @@ def digitalapp (request):
             response = 'CON shyiramo code yumuhinzi ugiye kwishyura' +str(len(level))+ '\n'
             # insert=Harvestrecord(farmercode=str(level[1]))
             # insert.save()
-        elif numb == '1'and int(len(level))==2 and str(level[1]) in str(level):
+        elif numb == '1' and int(len(level))==2 and str(level[1]) in str(level):
             response = 'CON  shyiramo ingano yumusaruro mu biro cg litiro' +str(len(level))+ '\n'
             # insert=Harvestrecord(Quantity=str(level[2]))
             # insert.save()
-        elif numb == '1'and int(len(level))==3 and str(level[2]) in str(level):
+        elif numb == '1' and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON  shyiramo amafaranga ugiye kwishyura' +str(len(level))+ '\n'
-        elif numb == '1'and int(len(level))==4 and str(level[3]) in str(level):
+        elif numb == '1' and int(len(level))==4 and str(level[3]) in str(level):
             response = 'CON  wahisemo kwishyura'+ str(level[3]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura \n'
         elif text == '2':
             response = 'CON  hitamo '+str(len(level))+'\n'
