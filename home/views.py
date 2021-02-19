@@ -35,11 +35,12 @@ def digitalapp (request):
     if request.method == 'POST':
         session_id = request.POST.get('sessionId')
         service_code = request.POST.get('serviceCode')
-        phone_number = request.POST.get('phoneNumber')
+        phone_numer = request.POST.get('phonenumer')
         text = request.POST.get('text')
         level = text.split('*')
         response = ''
-        numb = text[:6]
+        num = text[:6]
+
         if text == '':
             response = 'CON murakaza neza kurubuga rwabahinzi Smart ikigega \n'
             response += '1.ikigega pay \n'
@@ -52,22 +53,20 @@ def digitalapp (request):
             response += '1.uri mukigega \n'
             response += '2.momo isanzwe'
         elif text == '1*1':
-            response = 'CON shyiramo code yumuhinzi : '+str(len(level))+ '\n'  
-        elif numb == '1*1' and int(len(level))==3 and str(level[2]) in str(level):
+            response = 'CON shyiramo code yumuhinzi '+str(len(level))+' \n'  
+        elif num == '1*1' and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON shyiramo ingano yumusaruro mu biro cg litiro \n'
-        elif numb == '1*1' and int(len(level))==4 and str(level[3]) in str(level):
-            response = 'CON shyiramo ingano yumusaruro mu biro cg litiro \n' 
-        elif numb == '1*1' and int(len(level))==5 and str(level[4]) in str(level):
-            response = 'CON shyiramo amafaranga ugiye kwishyura \n'
-        elif numb == '1*1' and int(len(level))==6 and str(level[5]) in str(level):
-            response = 'CON  wahisemo kwishyura'+ str(level[5]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura  \n'
+        elif num == '1*1' and int(len(level))==4 and str(level[3]) in str(level):
+            response = 'CON shyiramo amafaranga ugiye kwishyura \n' 
+        elif num == '1*1' and int(len(level))==5 and str(level[4]) in str(level):
+            response = 'CON  wahisemo kwishyura'+ str(level[4]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura  \n'
         elif text == '1*2':
             response = 'CON nimero ya mobile : '+str(len(level))+ '\n'        
             # insert=Harvestrecord(farmercode=str(level[1]))
             # insert.save()
-        elif numb == '1*2' and int(len(level))==3 and str(level[2]) in str(level):
+        elif num == '1*2' and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON umubare wamafaranga  \n'
-        elif numb == '1*2' and int(len(level))==4 and str(level[3]) in str(level):
+        elif num == '1*2' and int(len(level))==4 and str(level[3]) in str(level):
             response = 'CON wahisemo kwishyura'+ str(level[4]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura  \n'   
             # insert=Harvestrecord(Quantity=str(level[2]))
             # insert.save()
@@ -79,7 +78,7 @@ def digitalapp (request):
             response += '3.ikigega Loan'
         elif text == '2*1':
             response = 'CON  shyiramo code yawe ubashe kureba umusaruro :' +str(len(level))+ '\n'
-        elif numb == '2*1'and int(len(level))==3 and str(level[2]) in str(level):
+        elif num == '2*1'and int(len(level))==3 and str(level[2]) in str(level):
             # insert=Harvestrecord(Quantity=str(level[3]))
             # if insert.is_valid():
              response = 'CON hitamo kureba \n'
@@ -98,7 +97,7 @@ def digitalapp (request):
             response += '3.imyaka icumi '   
         elif text == '2*2*1':
             response = 'CON  shyiramo code yawe ubashe kwinjira mubwishingizi bwumwaka umwe:' +str(len(level))+ '\n'
-        elif numb == '2*2*1'and int(len(level))==4 and str(level[3]) in str(level):   
+        elif num == '2*2*1'and int(len(level))==4 and str(level[3]) in str(level):   
             insert=Insurance(farmercode=str(level[2])) 
             if insert.is_valid():
                 response = 'CON kwiyandikisha gusaba ubwishingizi bwumwaka byagenze neza murahabwa igisubizo mu masaha macye'+str(len(level))+'\n'
@@ -106,7 +105,7 @@ def digitalapp (request):
 
         elif text == '2*2*2':
             response = 'CON  shyiramo code yawe ubashe kwinjira mubwishingizi bwimyaka itanu :' +str(len(level))+ '\n'
-        elif numb == '2*2*2'and int(len(level))==4 and str(level[3]) in str(level):   
+        elif num == '2*2*2'and int(len(level))==4 and str(level[3]) in str(level):   
             insert=Insurance(farmercode=str(level[2])) 
             if insert.is_valid():
                 response = 'CON kwiyandikisha gusaba ubwishingizi bwimyaka 5 byagenze neza murahabwa igisubizo mu masaha macye'+str(len(level))+'\n'
@@ -120,34 +119,40 @@ def digitalapp (request):
             response = 'CON  shyiramo izina rya cooperative :' +str(len(level))+ '\n'
             # insert= Cooperativesreg(name=str(level[2]))
             # insert.save 
-        elif numb == '3*1'and int(len(level))==3 and str(level[2]) in str(level):
+        elif num == '3*1'and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON  shyiramo izina ryumuyobozi wa cooperative' +str(len(level))+ '\n'
             # insert= Cooperativesreg(leadername=str(level[3]))
             # insert.save   
 
-        elif numb == '3*1'and int(len(level))==4 and str(level[3]) in str(level):
+        elif num == '3*1'and int(len(level))==4 and str(level[3]) in str(level):
             response = 'CON  shyiramo numero zumuyobozi wa cooperative :' +str(len(level))+ '\n'
             # insert= Cooperativesreg(leaderphone=str(level[4]))
             # insert.save   
-        elif numb == '3*1'and int(len(level))==5 and str(level[4]) in str(level):  
+        elif num == '3*1'and int(len(level))==5 and str(level[4]) in str(level):  
             response = 'CON  ubusabe bwawe bwo kwiyandikisha mukigega nkitsinda bwakiriwe urahabwa igisubizo mu gihe gito' +str(len(level))+ '\n'  
         elif text == '3*2':
             response = 'CON  shyiramo izina rya mbere :' +str(len(level))+ '\n'
             # insert= Regfarmer(firstname=str(level[2]))
             # insert.save
-        elif numb == '3*2'and int(len(level))==3 and str(level[2]) in str(level):
-            
+        elif num == '3*2'and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON  shyiramo izina rya kabiri \n'
             insert= Regfarmer(lastname=str(level[3]))
             insert.save
-        elif numb == '3*2' and int(len(level))==4 and str(level[3]) in str(level):
+        elif num == '3*2' and int(len(level))==4 and str(level[3]) in str(level):
             response = 'CON  shyiramo numero yawe ya telephone \n'
             insert= Regfarmer(telephone=str(level[4]))    
             insert.save
 
-        elif numb == '3*2' and int(len(level))==4 and str(level[5]) in str(level):  
+        elif num == '3*2' and int(len(level))==4 and str(level[5]) in str(level):  
             response = 'CON  ubusabe bwawe bwo kwiyandikisha mukigega bwakiriwe urahabwa igisubizo mu gihe gito \n'
-        
+        elif text == '4':
+            response = 'CON  shyiramo code yawe ubashe kubarura \n'
+        elif num == '4' and int(len(level))==2 and str(level[1]) in str(level):  
+            response = 'CON  shyiramo izina rya cooperative \n'  
+        elif num == '4' and int(len(level))==3 and str(level[2]) in str(level):  
+            response = 'CON  shyiramo code yumuhinzi \n'  
+        elif num == '4' and int(len(level))==4 and str(level[3]) in str(level):  
+            response = 'CON  shyiramo ibiro yagize \n'         
         else:
             response = 'END Invalid Choice'
         
@@ -174,11 +179,11 @@ def digitalapp (request):
         #     v=Harvestrecord.objects.filter(farmercode=y)
         #     for rt in v:
         #         qty = rt.Quantity
-        # elif numb == '1*1*1' and int(len(level))==4 and str(level[3]) in str(level):
+        # elif num == '1*1*1' and int(len(level))==4 and str(level[3]) in str(level):
         #     response = 'CON umusaruro mbumbe wawe ni' + qty + ' \n'
         # elif text == '1*1*2':
         #     response = 'CON injizamo code yumuhinzi \n'
-        # elif numb == '1*1*2'and int(len(level))==4 and str(level[3]) in str(level):
+        # elif num == '1*1*2'and int(len(level))==4 and str(level[3]) in str(level):
         #     response = 'CON ingano yumusaruro muri uku kwezi ni 140kg \n'
         # #  financial session
         # elif text == '1*2':
@@ -189,19 +194,19 @@ def digitalapp (request):
         #     # direct loan session
         # elif text == '1*2*1':
         #     response = 'CON injizamo code yumuhinzi ugiye kwishyura '+str(len(level))+' \n'
-        # elif numb == '1*2*1' and int(len(level))==4 and str(level[3]) in str(level):
+        # elif num == '1*2*1' and int(len(level))==4 and str(level[3]) in str(level):
         #     response = 'CON shyiramo amafaranga ugiye kwishyura : \n'
-        # elif numb == '1*2*1' and int(len(level))==5 and str(level[4]) in str(level):
+        # elif num == '1*2*1' and int(len(level))==5 and str(level[4]) in str(level):
         #     response = 'CON washyizemo' + str(level[4])  + 'ugiye kwishyura '+str(level[3])+  'kuri shyiramo umubare wibanga wemeze: \n'
-        # elif numb == '1*2*1' and int(len(level))==6 and str(level[5]) in str(level):
+        # elif num == '1*2*1' and int(len(level))==6 and str(level[5]) in str(level):
         #     response = 'CON  kwishyura amafaranga byagenze neza  murakoze: \n'
         # elif text == '1*2*2':
         #     response = 'CON Enter farmers code '+str(len(level))+' \n'
-        # elif numb == '1*2*2' and int(len(level))==4 and str(level[3]) in str(level):
+        # elif num == '1*2*2' and int(len(level))==4 and str(level[3]) in str(level):
         #     response = 'CON Enter the money you want pay: \n'   
-        # elif numb == '1*2*2' and int(len(level))==5 and str(level[4]) in str(level):
+        # elif num == '1*2*2' and int(len(level))==5 and str(level[4]) in str(level):
         #     response = 'CON Enter mobile-money pin to pay: \n'   
-        # elif numb == '1*2*2' and int(len(level))==6 and str(level[5]) in str(level):
+        # elif num == '1*2*2' and int(len(level))==6 and str(level[5]) in str(level):
         #     response = 'CON you have succesfully paid the loan thanks: \n'   
         # elif text == '1*3':
         #     response = 'CON Other services: \n'
