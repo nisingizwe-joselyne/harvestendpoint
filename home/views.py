@@ -54,20 +54,20 @@ def digitalapp (request):
             response += '2.momo isanzwe'
         elif text == '1*1':
             response = 'CON shyiramo code yumuhinzi '+str(level)+' \n' 
-            insert=Harvestrecord.objects.filter(farmercode=str(level[2]))
-            insert.save()
+            # insert=Harvestrecord.objects.filter(farmercode=str(level[2]))
+            # insert.save()
         elif num == '1*1' and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON shyiramo ingano yumusaruro mu biro cg litiro \n'
-            insert=Harvestrecord.objects.create(Quantity=str(level[3]))
-            insert.save()
+            # insert=Harvestrecord.objects.create(Quantity=str(level[3]))
+            # insert.save()
         elif num == '1*1' and int(len(level))==4 and str(level[3]) in str(level):
             response = 'CON shyiramo amafaranga ugiye kwishyura \n' 
         elif num == '1*1' and int(len(level))==5 and str(level[4]) in str(level):
             response = 'CON  wahisemo kwishyura'+ str(level[4]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura  \n'
         elif text == '1*2':
             response = 'CON nimero ya mobile : '+str(len(level))+ '\n'        
-            insert=Harvestrecord.objects.create(farmercode=str(level[2]))
-            insert.save()
+            # insert=Harvestrecord.objects.create(farmercode=str(level[2]))
+            # insert.save()
         elif num == '1*2' and int(len(level))==2 and str(level[3]) in str(level):
             response = 'CON umubare wamafaranga  \n'
         elif num == '1*2' and int(len(level))==3 and str(level[4]) in str(level):
@@ -103,15 +103,15 @@ def digitalapp (request):
             response = 'CON  shyiramo code yawe ubashe kwinjira mu bwishingizi bwumwaka umwe:' +str(len(level))+ '\n'
         elif num == '2*2*1'and int(len(level))==4 and str(level[3]) in str(level):
              response = 'CON kwiyandikisha gusaba ubwishingizi bwumwaka byagenze neza murahabwa igisubizo mu masaha macye'+str(len(level))+'\n'   
-             insert=Insurance.objects.filter(farmercode=str(level[4])) 
-             insert.save()     
+            #  insert=Insurance.objects.filter(farmercode=str(level[4])) 
+            #  insert.save()     
 
         elif text == '2*2*2':
             response = 'CON  shyiramo code yawe ubashe kwinjira mubwishingizi bwimyaka itanu :' +str(len(level))+ '\n'
         elif num == '2*2*2'and int(len(level))==4 and str(level[3]) in str(level):  
             response = 'CON kwiyandikisha gusaba ubwishingizi bwimyaka 5 byagenze neza murahabwa igisubizo mu masaha macye'+str(len(level))+'\n' 
-            insert=Insurance.objects.filter(farmercode=str(level[4])) 
-            insert.save()                        
+            # insert=Insurance.objects.filter(farmercode=str(level[4])) 
+            # insert.save()                        
             # response = 'CON code mwashyizemo ntibaho : \n'
         elif text == '3':
             response = 'CON  hitamo kwiyandikisha  nk \n'
@@ -119,31 +119,31 @@ def digitalapp (request):
             response += '2.umuhinzi ku giti cye '
         elif text == '3*1':
             response = 'CON  shyiramo izina rya cooperative :' +str(len(level))+ '\n'
-            insert = Cooperativesreg.objects.create(name=str(level[2]))
-            insert.save() 
+            # insert = Cooperativesreg.objects.create(name=str(level[2]))
+            # insert.save() 
         elif num == '3*1'and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON  shyiramo izina ryumuyobozi wa cooperative' +str(len(level))+ '\n'
-            insert= Cooperativesreg.objects.create(leadername=str(level[3]))
-            insert.save()   
+            # insert= Cooperativesreg.objects.create(leadername=str(level[3]))
+            # insert.save()   
 
         elif num == '3*1'and int(len(level))==4 and str(level[3]) in str(level):
             response = 'CON  shyiramo numero zumuyobozi wa cooperative :' +str(len(level))+ '\n'
-            insert= Cooperativesreg.objects.create(leaderphone=str(level[4]))
-            insert.save()   
+            # insert= Cooperativesreg.objects.create(leaderphone=str(level[4]))
+            # insert.save()   
         elif num == '3*1'and int(len(level))==5 and str(level[4]) in str(level):  
             response = 'CON  ubusabe bwawe bwo kwiyandikisha mukigega nkitsinda bwakiriwe urahabwa igisubizo mu gihe gito' +str(len(level))+ '\n'  
         elif text == '3*2':
             response = 'CON  shyiramo izina rya mbere :' +str(len(level))+ '\n'
-            insert= Regfarmer.objects.create(firstname=str(level[2]))
-            insert.save()
+            # insert= Regfarmer.objects.create(firstname=str(level[2]))
+            # insert.save()
         elif num == '3*2'and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON  shyiramo izina rya kabiri \n'
-            insert= Regfarmer.objects.create(lastname=str(level[3]))
-            insert.save()
+            # insert= Regfarmer.objects.create(lastname=str(level[3]))
+            # insert.save()
         elif num == '3*2' and int(len(level))==4 and str(level[3]) in str(level):
             response = 'CON  shyiramo numero yawe ya telephone \n'
-            insert= Regfarmer.objects(telephone=str(level[4]))    
-            insert.save()
+            # insert= Regfarmer.objects(telephone=str(level[4]))    
+            # insert.save()
 
         elif num == '3*2' and int(len(level))==4 and str(level[5]) in str(level):  
             response = 'CON  ubusabe bwawe bwo kwiyandikisha mukigega bwakiriwe urahabwa igisubizo mu gihe gito \n'
@@ -151,16 +151,16 @@ def digitalapp (request):
             response = 'CON  shyiramo code yawe ubashe kubarura \n'
         elif num == '4' and int(len(level))==2 and str(level[1]) in str(level):  
             response = 'CON  shyiramo izina rya cooperative \n'  
-            insert=Cooperative.objects.filter(name=str(level[2]))  
-            insert.save()
+            # insert=Cooperative.objects.filter(name=str(level[2]))  
+            # insert.save()
         elif num == '4' and int(len(level))==3 and str(level[2]) in str(level):  
             response = 'CON  shyiramo code yumuhinzi \n'  
-            insert=Harvestrecord.objects.filter(farmercode=str(level[3]))  
-            insert.save()
+            # insert=Harvestrecord.objects.filter(farmercode=str(level[3]))  
+            # insert.save()
         elif num == '4' and int(len(level))==4 and str(level[3]) in str(level):  
             response = 'CON  shyiramo ibiro yagize \n'  
-            insert=Harvestrecord.objects(Quantity=str(level[4]))  
-            insert.save()    
+            # insert=Harvestrecord.objects(Quantity=str(level[4]))  
+            # insert.save()    
         else:
             response = 'END Invalid Choice'
         
