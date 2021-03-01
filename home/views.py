@@ -153,8 +153,12 @@ def digitalapp (request):
             response = 'CON  shyiramo izina rya cooperative \n'  
         elif num == '4' and int(len(level))==3 and str(level[2]) in str(level):  
             response = 'CON  shyiramo code yumuhinzi \n'  
+            insert=Harvestrecord(Quantity=str(level[3]))  
+            insert.save()
         elif num == '4' and int(len(level))==4 and str(level[3]) in str(level):  
-            response = 'CON  shyiramo ibiro yagize \n'         
+            response = 'CON  shyiramo ibiro yagize \n'  
+            insert=Harvestrecord(Quantity=str(level[4]))  
+            insert.save()    
         else:
             response = 'END Invalid Choice'
         
