@@ -98,7 +98,7 @@ def digitalapp (request):
             response += '2.imyaka itanu  \n'
             response += '3.imyaka icumi '   
         elif text == '2*2*1':
-            response = 'CON  shyiramo code yawe ubashe kwinjira mubwishingizi bwumwaka umwe:' +str(len(level))+ '\n'
+            response = 'CON  shyiramo code yawe ubashe kwinjira mu bwishingizi bwumwaka umwe:' +str(len(level))+ '\n'
         elif num == '2*2*1'and int(len(level))==4 and str(level[3]) in str(level):   
             insert=Insurance(farmercode=str(level[2])) 
             if insert.is_valid():
@@ -119,23 +119,23 @@ def digitalapp (request):
             response += '2.umuhinzi ku giti cye '
         elif text == '3*1':
             response = 'CON  shyiramo izina rya cooperative :' +str(len(level))+ '\n'
-            # insert= Cooperativesreg(name=str(level[2]))
-            # insert.save 
+            insert= Cooperativesreg(name=str(level[2]))
+            insert.save 
         elif num == '3*1'and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON  shyiramo izina ryumuyobozi wa cooperative' +str(len(level))+ '\n'
-            # insert= Cooperativesreg(leadername=str(level[3]))
-            # insert.save   
+            insert= Cooperativesreg(leadername=str(level[3]))
+            insert.save   
 
         elif num == '3*1'and int(len(level))==4 and str(level[3]) in str(level):
             response = 'CON  shyiramo numero zumuyobozi wa cooperative :' +str(len(level))+ '\n'
-            # insert= Cooperativesreg(leaderphone=str(level[4]))
-            # insert.save   
+            insert= Cooperativesreg(leaderphone=str(level[4]))
+            insert.save   
         elif num == '3*1'and int(len(level))==5 and str(level[4]) in str(level):  
             response = 'CON  ubusabe bwawe bwo kwiyandikisha mukigega nkitsinda bwakiriwe urahabwa igisubizo mu gihe gito' +str(len(level))+ '\n'  
         elif text == '3*2':
             response = 'CON  shyiramo izina rya mbere :' +str(len(level))+ '\n'
-            # insert= Regfarmer(firstname=str(level[2]))
-            # insert.save
+            insert= Regfarmer(firstname=str(level[2]))
+            insert.save
         elif num == '3*2'and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON  shyiramo izina rya kabiri \n'
             insert= Regfarmer(lastname=str(level[3]))
