@@ -54,7 +54,9 @@ def digitalapp (request):
             response += '2.momo isanzwe'
         elif text == '1*1':
             response = 'CON shyiramo code yumuhinzi '+str(len(level))+' \n' 
-            response +='hello'
+        elif text == '1*1'+response:
+            response = response 
+            
         elif num == '1*1' and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON shyiramo ingano yumusaruro mu biro cg litiro \n'
         elif num == '1*1' and int(len(level))==4 and str(level[3]) in str(level):
