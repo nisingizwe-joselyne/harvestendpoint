@@ -39,7 +39,7 @@ def digitalapp (request):
         text = request.POST.get('text')
         level = text.split('*')
         response = ''
-        num = text[:6]
+        num = text[:3]
 
         if text == '':
             response = 'CON murakaza neza kurubuga rwabahinzi Smart ikigega \n'
@@ -55,7 +55,7 @@ def digitalapp (request):
         elif text == '1*1':
             response = 'CON shyiramo code yumuhinzi '+str(level)+' \n' 
 
-        elif num == '1*1*' and int(len(level))==3 and str(level[2]) in str(level):
+        elif num == '1*1' and int(len(level))==3 and str(level[2]) in str(level):
             response = 'CON shyiramo ingano yumusaruro mu biro cg litiro \n'
 
         elif num == '1*1' and int(len(level))==4 and str(level[3]) in str(level):
