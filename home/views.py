@@ -54,10 +54,10 @@ def digitalapp (request):
             response += '2.momo isanzwe'
         elif text == '1*1':
             response = 'CON shyiramo code yumuhinzi '+str(len(level))+' \n' 
-            response=level
-        elif num == '1*1' and int(len(level))==2 and str(level[1]) in str(level):
-            response = 'CON shyiramo ingano yumusaruro mu biro cg litiro \n'
+            response +='hello'
         elif num == '1*1' and int(len(level))==3 and str(level[2]) in str(level):
+            response = 'CON shyiramo ingano yumusaruro mu biro cg litiro \n'
+        elif num == '1*1' and int(len(level))==4 and str(level[3]) in str(level):
             response = 'CON shyiramo amafaranga ugiye kwishyura \n' 
         elif num == '1*1' and int(len(level))==4 and str(level[3]) in str(level):
             response = 'CON  wahisemo kwishyura'+ str(level[4]) + 'ugiye kwishyura kuri' + str(level[2]) +'shyiramo umubare wibanga wemeze kwishyura  \n'
