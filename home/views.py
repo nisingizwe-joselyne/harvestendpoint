@@ -148,7 +148,7 @@ def digitalapp (request):
         elif num == '3*2' and int(len(level))==4 and str(level[5]) in str(level):  
             response = 'CON  ubusabe bwawe bwo kwiyandikisha mukigega bwakiriwe urahabwa igisubizo mu gihe gito \n'
         elif text == '4':
-            response = 'CON  shyiramo code yawe ubashe kubarura \n'
+            response = 'CON  shyiramo code yawe ubashe kubarura :' +str(len(level))+ '\n'
         elif num == '4' and int(len(level))==2 and str(level[1]) in str(level):  
             response = 'CON  shyiramo izina rya cooperative \n'  
             # insert=Cooperative.objects.filter(name=str(level[2]))  
