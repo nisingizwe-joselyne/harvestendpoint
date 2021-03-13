@@ -1,12 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 import africastalking
 from .models import*
 from .serializers import*
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
-
-
+from rest_framework.parsers import JSONParser,MultiPartParser,FormParser,FileUploadParser
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import check_password
+import urllib,json
 username = "nesjoselyne@gmail.com"
 api_key = "7d5ec7e665579ee7ef1a3a71927f74123d0542960de776089cc89b28b4977804"
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -18,13 +20,17 @@ from django.views.decorators.csrf import csrf_exempt
 
 def welcome(request):
     return render(request,'harvest.html') 
-
+def kiny(request):
+    return render(request,'kiny.html') 
 def cooperative(request):
     return render(request,'cooperative.html') 
 
 def work(request):
     return render(request,'work.html')    
-
+def index(request):
+    return render(request,'index.html')
+# def register(request):
+#     return render(request,'register.html')
 def signin(request):
     return render(request,'signin.html')      
 def record(request):
@@ -91,9 +97,9 @@ def digitalapp (request):
             # response = 'CON code mwashyizemo ntibaho : \n'
                  
         elif text =='2*1*1':
-            response = 'CON umusaruro wawe wukukwezi ni 360kg'+str(level[3])+'\n'
+            response = 'CON umusaruro wa' + str(level[2]) +'wukukwezi ni 360kg'+str(level[3])+'\n'
         elif text =='2*1*2':
-            response = 'CON umusaruro mbumbe wawe ni 3600kg'+str(level[3])+'\n'
+            response = 'CON umusaruro mbumbe wa' + str(level[2]) + 'ni 3600kg'+str(level[3])+'\n'
         elif text == '2*2':
             response = 'CON  ubwishingizi bw \n'
             response += '1.umwaka umwe \n'
@@ -140,16 +146,16 @@ def digitalapp (request):
             response = 'CON  shyiramo izina rya kabiri \n'
             # insert= Regfarmer.objects.create(lastname=str(level[3]))
             # insert.save()
-        elif num == '3*2' and int(len(level))==4 and str(level[3]) in str(level):
+        elif num == '3*2'and int(len(level))==4 and str(level[3]) in str(level):
             response = 'CON  shyiramo numero yawe ya telephone \n'
             # insert= Regfarmer.objects(telephone=str(level[4]))    
             # insert.save()
 
-        elif num == '3*2' and int(len(level))==4 and str(level[5]) in str(level):  
+        elif num == '3*2' and int(len(level))==5 and str(level[4]) in str(level):  
             response = 'CON  ubusabe bwawe bwo kwiyandikisha mukigega bwakiriwe urahabwa igisubizo mu gihe gito \n'
         elif text == '4':
             response = 'CON  shyiramo code yawe ubashe kubarura :' +str(len(level))+ '\n'
-        elif num == '4' and int(len(level))==2 and str(level[1]) in str(level):  
+        elif num == '4'and int(len(level))==2 and str(level[1]) in str(level):  
             response = 'CON  shyiramo izina rya cooperative \n'  
             # insert=Cooperative.objects.filter(name=str(level[2]))  
             # insert.save()
@@ -375,22 +381,22 @@ class CustomAuthToken(ObtainAuthToken):
 
         })       
 
-def registration(request):
-    select = Cooperativesreg.objects.all()
-    if request.method == 'POST':
-        name = request.POST['name']
-        Cooperativedistrict = request.POST['Cooperativedistrict']
-        leaderphone = request.POST['leaderphone']
-        harvesttype = request.POST['harvesttype']
-        leadername = request.POST['leadername']
-        Cooperativesector = request.POST['Cooperativesector']
-        insert = Cooperativesreg(name=name,Cooperativedistrict=Cooperativedistrict,leaderphone=leaderphone, harvesttype= harvesttype,leadername=leadername,Cooperativesector=Cooperativesector)
-        try:
-            insert.save()
-            return render(request,'cooperative.html',{'message':'your request has been succeeful submitted we will  get in touch with u soon','data':select})
-        except :
-            return render(request,'cooperative.html',{'message':'failed to insert','data':select})
-    return render(request,'cooperative.html',{'data':select})
+# def registration(request):
+#     select = Cooperative.objects.all()
+#     if request.method == 'POST':
+#         name = request.POST['name']
+#         Cooperativedistrict = request.POST['Cooperativedistrict']
+#         leaderphone = request.POST['leaderphone']
+#         harvesttype = request.POST['harvesttype']
+#         leadername = request.POST['leadername']
+#         Cooperativesector = request.POST['Cooperativesector']
+#         insert = Cooperativesreg(name=name,Cooperativedistrict=Cooperativedistrict,leaderphone=leaderphone, harvesttype= harvesttype,leadername=leadername,Cooperativesector=Cooperativesector)
+#         try:
+#             insert.save()
+#             return render(request,'cooperative.html',{'message':'your request has been succeeful submitted we will  get in touch with u soon','data':select})
+#         except :
+#             return render(request,'cooperative.html',{'message':'failed to insert','data':select})
+#     return render(request,'cooperative.html',{'data':select})
 
 def Harvestrecording(request):
     select = Harvestrecord.objects.all()
@@ -424,3 +430,152 @@ def Harvestrecording(request):
 #             return JsonResponse({'message':'sucecesful registred', 'data':serializer.data}, status=201)
 #         return JsonResponse(serializer.errors, status=400)
 
+def registration(request):
+    if request.method=='POST':
+        # recaptcha_response = request.POST.get('g-recaptcha-response')
+        # url = 'https://www.google.com/recaptcha/api/siteverify'
+        # values = {
+        #     'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+        #     'response': recaptcha_response
+        # }
+        # data = urllib.parse.urlencode(values).encode()
+        # req =  urllib.request.Request(url, data=data)
+        # response = urllib.request.urlopen(req)
+        # result = json.loads(response.read().decode())
+        # ''' End reCAPTCHA validation '''
+
+            
+            Name=request.POST['name']
+            email=request.POST['email']
+            password1=request.POST['password1']
+            password2=request.POST['password2']
+            # leaderphone=request.POST['leaderphone']
+            # district = request.POST['district']
+            # harvesttype = request.POST['harvesttype']
+            signer = Signer()
+            passleng=len(password2)
+            if password1==password2:
+
+                if passleng>=8:
+
+                    if User.objects.filter(username=Name).exists():
+                        messages.info(request,'cooperativename already exist taken')
+                        return redirect('register')
+                    elif User.objects.filter(email=email).exists():
+                        messages.info(request,'Email is already exist taken')
+                        return redirect('register')
+                    else:
+                        subject='Verification from smart ikigega'
+                        message='This link is for activating your account on smart ikigega'+'\n'+'your Username:  '+Name+'\n'+'https://www.smartikigega.rw/activation/'+email+'/'+signer.sign(email)
+                        from_email=settings.EMAIL_HOST_USER
+                        rt=send_mail(subject,message,from_email,[str(email),],fail_silently=False)
+                        print(rt)
+                        if rt==True:
+                            user=User.objects.create_user(email=email,username=Name,password=password1,)
+                            user.save()
+                            mess=email
+                            return render(request,'cooperative.html',{'mess':mess})
+                        else:
+                            messages.info(request,'email is not exist please')
+                            return redirect('register')
+
+                else:
+                    messages.info(request,'Please fill the 8 and above word for password')
+                    return redirect('register')
+            else:
+                messages.info(request,'Password not match')
+                return redirect('register')
+    
+            
+    else:
+              
+        return render(request,'cooperative.html')
+
+
+def user(request):
+    if str(request.user)=='AnonymousUser':
+        return redirect('index')
+    else:
+        if Recorder.objects.filter(user=str(request.user)):
+            return redirect('dashboard')
+        else:
+            site=sites.objects.all()
+    lastcode=Regfarmer.objects.all().order_by('-pub_date')[:1]
+    lastcodes=lastcode.count()
+    prof=Profilecooperative.objects.filter(cooperative=str(request.user))
+ 
+    reg = Regfarmer.objects.all().filter(cooperative=request.user).order_by('-id')
+    if request.method=='POST':
+        firstname=request.POST['firstname']
+        lastname=request.POST['lastname']
+        email=request.POST['email']
+        # resi=request.POST['resi']
+        gender=request.POST['gender']
+        site=25
+        tel=request.POST['telephone']
+        telephone =tel[1:]
+        now = datetime.now()
+        # froms=request.POST['from']
+        # temp=request.POST['temp']
+        dateofbirth=request.POST['dateofbirth']
+        district =request.POST['district']
+        village = request.POST['village']
+        # Cooperativesreg = request.POST['cell']
+
+        years= now.year
+        newcode=str(years)+str(1)
+        one=1
+        # if lastcodes ==0:
+        lastnum=Regfarmer.objects.filter(telephone=telephone)
+        nums=lastnum.count()
+        print(nums)
+        if nums <= 2:
+            def random_with_N_digits(n):
+                range_start = 10**(n-1)
+                range_end = (10**n)-1
+                return randint(range_start, range_end)
+            nost = random_with_N_digits(6)
+            Regfarmer.objects.create(district=district,village=village,email=email,dateofbirth=dateofbirth,firstname=firstname,lastname=lastname,gender=gender,telephone=telephone,code= nost, Cooperative=str(request.user),user=request.user).save()
+
+            mess='Dear '+str(firstname) +' '+str(lastname) +'\n'+'your  new Smart ikigaga code is : '+str(nost)
+
+            if email != None or tel !=None:
+                subject='Thank you for using smart ikigega'
+                message='Dear '+str(firstname) +' '+str(lastname) +'\n'+'your code is : '+str(nost)
+                from_email=settings.EMAIL_HOST_USER
+                rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
+                #account_sid = 'AC1b41153cd2a60b01893bb9740d2fd875'
+                #auth_token = 'efa2a032ba78dff3111fce2efafa5940'
+                #client =Client(account_sid, auth_token)
+                #message = client.messages.create(body='your Code is: '+nost,from_='+16305280341',to='+250784447864')
+                sendsms = requests.post('http://rslr.connectbind.com:8080/bulksms/bulksms?username=1212-pathos&password=Chance@1&type=0&dlr=1&destination='+str(telephone)+'&source=CityPlus&message='+str(mess)+'')
+                pass
+            else:
+                pass
+            mess='Dear '+str(firstname) +' '+str(lastname) +'\n'+'your code is : '+str(nost)     
+            return render(request,'user.html',{'site':site,'mess':mess,'register':reg})
+
+    else:
+        return render(request,'failed.html',{mess:'not created'})
+        # if prof.exists():
+        #     if Payment.objects.filter(chur_name=str(request.user)).exists():
+        #         #print('mpwmw')
+        #         last_pay=Payment.objects.filter(chur_name=str(request.user)).order_by('-pay_date')[:1]
+        #         for ft in last_pay:
+        #             last=ft.pay_date
+        #         month_pay=last + datetime.timedelta(30)
+        #         date_tod=datetime.date.today()
+        #         if month_pay<=date_tod:
+        #             instal=10000
+        #             bulk=10000
+        #             total=instal+bulk
+        #             return render(request,'user.html',{'last':last,'month_pay':month_pay,'bulk':bulk,'total':total,'instal':instal,'zipcod':zipcod,'prof':prof,'service':serv})
+        #         else:
+        #             return render(request,'user.html',{'zipcod':zipcod,'prof':prof,'service':serv})
+        #     else:
+        #         pay=1
+        #         #print(pay)
+        #         instal=20000
+        #         bulk=10000
+        #         total=instal+bulk
+        #         return render(request,'user.html',{'bulk':bulk,'total':total,'instal':instal,'pay':pay,'zipcod':zipcod,'prof':prof,'service':serv})

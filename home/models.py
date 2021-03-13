@@ -6,8 +6,14 @@ from django.contrib.auth.models import User,auth
 class Cooperative(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     name=models.CharField(max_length=255)
-    harvesttype=models.CharField(max_length=255)
-    district=models.CharField(max_length=255)
+    email=models.CharField(max_length=255) 
+    # leaderphone=models.CharField(max_length=255)
+    # harvesttype=models.CharField(max_length=255)
+    # email=models.CharField(max_length=255)
+    # password1=models.CharField(max_length=255)
+    # password2=models.CharField(max_length=255)
+    # district=models.CharField(max_length=255) 
+    # Cooperativesector=models.CharField(max_length=255) 
     def __str__(self):
         return self.name
 
@@ -26,6 +32,7 @@ class Regfarmer(models.Model):
     gender = models.CharField(max_length=255)
     district = models.CharField(max_length=255)
     village = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
     country = models.CharField(max_length=255)
     dateofbirth = models.CharField(max_length=255)
     telephone = models.CharField(max_length=255)
@@ -40,11 +47,23 @@ class Insurance(models.Model):
         return self.farmercode  
 class Harvestrecord(models.Model):
     Quantity=models.CharField(max_length=255)
-    farmercode=models.ForeignKey(Regfarmer, on_delete=models.CASCADE)
+    farmercode=models.CharField(max_length=255)
     donedate=models.DateField(auto_now=True)
     donetime=models.TimeField(auto_now=True)
 
+class EndpointAfripay(models.Model):
+    status=models.CharField(max_length=255)
+    transaction_ref=models.CharField(max_length=234)
+    amount=models.FloatField()
+    currency=models.CharField(max_length=234)
+    payment_method=models.CharField(max_length=234)
+    client_token=models.CharField(max_length=234)
 
+class sites(models.Model):
+    Cooperative=models.ForeignKey(Cooperative, on_delete=models.CASCADE)
+    sitename=models.CharField(max_length=20)    
+    def __str__(self):
+        return self.sitename
 class Loan(models.Model):
     farmercode = models.ForeignKey(Regfarmer, on_delete=models.CASCADE)
     loan_amount= models.CharField(max_length=255)
@@ -57,19 +76,18 @@ class Payharvest(models.Model):
     def __str__(self):
         return self.farmercode
 
-class Cooperativesreg(models.Model):
-    name=models.CharField(max_length=255)
-    leadername=models.CharField(max_length=255)
-    leaderphone=models.CharField(max_length=255)
-    harvesttype=models.CharField(max_length=255)
-    Cooperativedistrict=models.CharField(max_length=255) 
-    Cooperativesector=models.CharField(max_length=255) 
-    def __str__(self):
-        return self.name
+# class Cooperativesreg(models.Model):
+#     name=models.CharField(max_length=255)
+#     leaderphone=models.CharField(max_length=255)
+#     harvesttype=models.CharField(max_length=255)
+#     Cooperativedistrict=models.CharField(max_length=255) 
+#     Cooperativesector=models.CharField(max_length=255) 
+#     def __str__(self):
+#         return self.name
 
 class Profilecooperative(models.Model):
     farmer=models.ForeignKey(User, on_delete=models.CASCADE)
-    image=models.ImageField(upload_to='Instute cooperative Logo',null=True,blank=True)
+    image=models.ImageField(upload_to=' cooperative Logo',null=True,blank=True)
     cooperativename=models.CharField(max_length=255)
     @property
     def imageURL(self):

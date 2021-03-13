@@ -25,28 +25,35 @@ class UserSerializer(serializers.ModelSerializer):
         
     class Meta:
         model=User
-        fields=('username','password','cooperative','email','first_name','last_name')
+        fields=('email','password','name','Cooperativedistrict','cooperativesector','leaderphone','harvesttype')
         
     def create(self,validated_data):
         insert=User.objects.create_user(
         email=validated_data['email'],
-        username=validated_data['username'],
+        name=validated_data['name'],
         password=make_password(validated_data['password']),
-        first_name=validated_data['first_name'],
-        last_name=validated_data['last_name']
+        leaderphone=validated_data['leaderphone'],
+        cooperativesector=validated_data['cooperativesector'],
+        Cooperativedistrict=validated_data['cooperativedistrict']
         )
         email=validated_data['email']
-        username=validated_data['username']
+        name=validated_data['name']
         signer = Signer()
-        subject='Verification from City Plus'
-        message='This link is for activating your account on city plus \n'+'your Username:  '+username+'\n https://www.cityplus.rw/activation/'+email+'/'+signer.sign(email)
+        subject='Verification from  smart ikigega'
+        message='This link is for activating your account on Smart Ikigega \n'+'your Username:  '+name+'\n https://www.smart ikigega.rw/activation/'+email+'/'+signer.sign(email)
         from_email=settings.EMAIL_HOST_USER
         rt=send_mail(subject,message,from_email,[str(email),],fail_silently=False)
         Cooperative_data=validated_data.pop('Cooperative')
-        Cooperative=cooperatives.objects.create(
+        Cooperative=Cooperative.objects.create(
         user=insert,
         name=Cooperative_data['name'],
-        harvesttype=Cooperative_data['harvesttype']
+        harvesttype=Cooperative_data['harvesttype'],
+        email=Cooperative_data['email'],
+        password1=Cooperative_data['password1'],
+        password2=Cooperative_data['password2'],
+        leaderphone=Cooperative_data['leaderphone'],
+        district=Cooperative_data['district'],
+        Cooperativesector=Cooperative_data['Cooperativesector'],
         # district =Cooperative_data['district']
 
         )
@@ -71,17 +78,17 @@ class farmerSerializer(serializers.ModelSerializer):
             return randint(range_start, range_end)
         nost= random_with_N_digits(6)
   
-        # if firstname != None or telephone !=None:
+        if firstname != None or telephone !=None:
 
-        #     subject='Thank you for Using City Plus'
-        #     message='Dear '+str(validated_data['firstname']) +' '+str(validated_data['lastname']) +'\n'+'your code is : '+str(nost)
-        #     from_email=settings.EMAIL_HOST_USER
-        #     rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
-        #     mess='Dear '+str(validated_data['firstname']) +' '+str(validated_data['lastname']) +'\n'+'your  new cityplus code is : '+str(nost)
-        #     #sendsms = requests.post('http://rslr.connectbind.com:8080/bulksms/bulksms?username=1212-pathos&password=Chance@1&type=0&dlr=1&destination='+str(telephone)+'&source=CityPlus&message='+str(mess)+'')
-        #     pass
-        # else:
-        #     pass 
+            subject='Thank you for Using smart ikigega'
+            message='Dear '+str(validated_data['firstname']) +' '+str(validated_data['lastname']) +'\n'+'your code is : '+str(nost)
+            from_email=settings.EMAIL_HOST_USER
+            rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
+            mess='Dear '+str(validated_data['firstname']) +' '+str(validated_data['lastname']) +'\n'+'your  new cityplus code is : '+str(nost)
+            sendsms = requests.post('http://rslr.connectbind.com:8080/bulksms/bulksms?username=1212-pathos&password=Chance@1&type=0&dlr=1&destination='+str(telephone)+'&source=CityPlus&message='+str(mess)+'')
+            pass
+        else:
+            pass 
      
 
         insert=Regfarmer.objects.create(
@@ -149,7 +156,7 @@ class RecorderSerializer(serializers.ModelSerializer):
             insert=User.objects.create_user(
             email=validated_data['email'],
             username=validated_data['username'],
-            password=make_password(passw),
+            password=make_password('password'),
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name']
             )
@@ -157,19 +164,19 @@ class RecorderSerializer(serializers.ModelSerializer):
         
             
             signer = Signer()
-            subject='Thank you for Using City Plus'
+            subject='Thank you for Using Smart ikigega'
             message='Dear '+validated_data['first_name']+'  '+validated_data['last_name']+'\n'+'https://www.cityplus.rw/login/'+'\n'+'Username: '+email+'\n'+'Password: '+passw+'\n'+'Thank you are now employed by'+"str(request.user)"
             from_email=settings.EMAIL_HOST_USER
             rt=send_mail(subject,message,from_email,[str(email),],fail_silently=True)
 
             record_data=validated_data.pop('Recording')
 
-            cooperative=Recorder.objects.create(
+            Cooperative=Recorder.objects.create(
             user=insert,
-            phone=teach_data['phone'],
-            name=teach_data['name'],
-            username=teach_data[' username'],
-            password=teach_data['password']
+            phone=record_data['phone'],
+            name=record_data['name'],
+            username=record_data[' username'],
+            password=record_data['password']
 
             )
             return insert
@@ -218,6 +225,6 @@ class PayharvestSerializer(serializers.ModelSerializer):
         
 class RegisterSerializer(serializers.ModelSerializer):
    class Meta:
-       model = Cooperativesreg
+       model = Cooperative
        depth = 1 
        fields = ('__all__')

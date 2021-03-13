@@ -6,6 +6,7 @@ from django.conf.urls.static import static
                                                          
 urlpatterns=[
     path('',views.welcome, name='harvest'),
+    path('kiny',views.kiny, name='kiny'),
     path('cooperative',views.cooperative, name='cooperative'),
     path('work',views.work, name='work'),
     path('signin',views.signin, name='signin'),
