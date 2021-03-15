@@ -7,24 +7,43 @@ class Cooperative(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     name=models.CharField(max_length=255)
     email=models.CharField(max_length=255) 
-    # leaderphone=models.CharField(max_length=255)
-    # harvesttype=models.CharField(max_length=255)
+    leaderphone=models.CharField(max_length=255)
+    harvesttype=models.CharField(max_length=255)
     # email=models.CharField(max_length=255)
     # password1=models.CharField(max_length=255)
     # password2=models.CharField(max_length=255)
-    # district=models.CharField(max_length=255) 
+    district=models.CharField(max_length=255) 
     # Cooperativesector=models.CharField(max_length=255) 
     def __str__(self):
         return self.name
 
 class Recorder(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
+    cooperativename=models.ForeignKey(Cooperative, on_delete=models.CASCADE)
     phone = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
     username = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     def __str__(self):
         return self.username  
+
+class Farmers(models.Model):
+    firstname= models.CharField(max_length=255)
+    lastname = models.CharField(max_length=255)
+    gender = models.CharField(max_length=255)
+    district = models.CharField(max_length=255)
+    village = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    harvesttype = models.CharField(max_length=255)
+    dateofbirth = models.CharField(max_length=255)
+    number = models.CharField(max_length=255)
+    Cooperative=models.CharField(max_length=255)
+    code=models.CharField(max_length=255)
+    sector=models.CharField(max_length=255) 
+    cell=models.CharField(max_length=255) 
+    def __str__(self):
+        return self.firstname        
 
 class Regfarmer(models.Model):
     firstname= models.CharField(max_length=255)
@@ -86,9 +105,10 @@ class Payharvest(models.Model):
 #         return self.name
 
 class Profilecooperative(models.Model):
-    farmer=models.ForeignKey(User, on_delete=models.CASCADE)
+    farmers=models.ForeignKey(User, on_delete=models.CASCADE)
     image=models.ImageField(upload_to=' cooperative Logo',null=True,blank=True)
     cooperativename=models.CharField(max_length=255)
+    activate_on=models.DateField(auto_now=True)
     @property
     def imageURL(self):
         try:

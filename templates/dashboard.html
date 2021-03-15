@@ -86,7 +86,7 @@
     
     <div class="w-2/6"> 
       {% load static %}
-      <img src="{% static 'City Plus.png'%}" class="h-12 w-32 justify-center ml-2 md:ml-12"/>      </div>
+      <img src="{% static 'image/wheat.jpg'%}" class="h-12 w-32 justify-center ml-2 md:ml-12"/>      </div>
 
 
 
@@ -201,14 +201,14 @@
               <div class="bg-blue-300 text-white w-full rounded-sm mx-4 font-medium text-center font-sans
               text-2xl
               shadow-lg
-              ">Members : {{clien}}</div>
+              ">Members : {{farmers}}</div>
               <div class="bg-red-700 w-full  rounded-sm mx-4 font-medium text-center
               font-sans
               text-2xl
               text-white
               shadow-lg
               ">
-                Measures : {{meas}}
+                Records : {{Harvestrecord}}
               </div>
               <div class="bg-green-400 w-full  rounded-sm mx-4 font-medium text-center
               font-sans
@@ -216,7 +216,7 @@
               text-white
               shadow-lg
               ">
-                Workers : {{works}}
+                Recorders : {{Recorder}}
               </div>
             </div>
 
@@ -245,15 +245,15 @@
           {%endif%}
           
           <div class="container mt-8">
-            <p class="px-4 text-gray-700 text-2xl font-bold ">Churches</p>
+            <p class="px-4 text-gray-700 text-2xl font-bold ">Cooperative</p>
             <table id="example" class="">
               <thead>
                 <tr>
-                  <th>Telephone</th>
+                  <th>leaderphone</th>
                   <th>Username</th>
                   <th>Email</th>
                   <th>Current logged in</th>
-                  <th>Date Doined</th>
+                  <th>Date joined</th>
                   <th >Operation</th>
                 </tr>
               </thead>
@@ -261,7 +261,7 @@
               <tfoot>
                 <tr>
                 
-                    <th>Telephone</th>
+                    <th>leaderphone</th>
                     <th>Username</th>
                     <th>Email</th>
                     <th>Current logged in</th>
@@ -271,11 +271,11 @@
               </tfoot>
     
               <tbody>
-                            {% for dt in churchers%}
-                            {%if dt.first_name%}
+                            {% for dt in Cooperative%}
+                            {%if dt.name%}
                             {%else%}
                 <tr>
-                  <td class="capitalize">{{dt.first_name}} {{dt.last_name}}</td>
+                  <td class="capitalize">{{dt.name}}</td>
                   <td >{{dt.username}}</td>
                   <td class="capitalize">{{dt.email}}</td>
                   <td>{{dt.last_login}}</td>

@@ -3,6 +3,7 @@ from .models import *
 
 # Register your models here.
 admin.site.register(Regfarmer),
+admin.site.register(Farmers),
 # admin.site.register(Cooperativesreg),
 admin.site.register(Recorder),
 admin.site.register(Harvestrecord),
